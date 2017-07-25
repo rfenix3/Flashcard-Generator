@@ -27,26 +27,19 @@ var ClozeCard = function(text, cloze) {
 
 // Prototype method code starts here.
 // ======================================================================
+
 ClozeCard.prototype.partial = function(){
   var str = this.fullText;
   var keyWord = this.cloze;
-  var txtLength = str.length;
-  var clozeLength = keyWord.length;
-  // The code below finds the index where the keyWord is found in the str
   var n = str.search(keyWord);
+  var answer = "";
   // The if statement tests if the keyWord is found in str. 
   if (n >= 0){
-  // the following code divides the str into firstPart (string before the keyWord) and the thirdPart (string after the keyWord).   
-    var firstPart = str.substr(0,n);
-    var thirdPart = str.substr(n+clozeLength,txtLength); 
-    // the answer variable assembles the string, replacing the keyword with "...""
-    var answer = firstPart + "..." + thirdPart
-    return answer;
+    answer = str.replace(keyWord, "...");
   } else {
-    // the else condition is executed if the keyWord is not found in str.
-    var answer = "Error: \"" + keyWord + "\" does not appear in \"" + str + "\""; 
-    return answer;
+    answer = "Error: \"" + keyWord + "\" does not appear in \"" + str + "\""; 
   };
+  return answer;
 };
 
 // ================== prototype method ends here =========================
